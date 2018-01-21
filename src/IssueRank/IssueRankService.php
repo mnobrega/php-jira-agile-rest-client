@@ -18,7 +18,7 @@ class IssueRankService extends JiraClient
     {
         $data = json_encode($issueRank);
         $this->log->addInfo("Update Rank=\n".$data);
-        $ret = $this->exec($this->uri."/", $data, 'PUT');
+        $ret = $this->exec($this->uri, $data, 'PUT');
         return $ret;
     }
 }
