@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use JiraAgileRestApi\Configuration\ConfigurationInterface;
 use JiraAgileRestApi\Configuration\DotEnvConfiguration;
 
-class JiraRestApiServiceProvider extends ServiceProvider
+class JiraAgileRestApiServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
