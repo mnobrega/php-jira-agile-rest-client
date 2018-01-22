@@ -1,8 +1,8 @@
 {
-    "name": "lesstif/php-jira-rest-client",
-    "description": "JIRA REST API Client for PHP Users.",
+    "name": "mnobrega/php-jira-agile-rest-client",
+    "description": "JIRA Agile REST API Client for PHP Users.",
     "type": "library",
-    "keywords": ["jira", "rest", "jira-php", "jira-rest"],
+    "keywords": ["jira", "rest", "jira-php", "jira-rest","jira-agile"],
     "require": {
         "php": ">=5.5.9",
         "netresearch/jsonmapper": "~0.11|^1.0",
