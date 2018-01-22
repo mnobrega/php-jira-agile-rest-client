@@ -19,9 +19,8 @@
     "license": "Apache-2.0",
     "authors": [
         {
-            "name": "KwangSeob Jeong",
-            "email": "lesstif@gmail.com",
-            "homepage": "http://lesstif.com/"
+            "name": "Marcio Nobrega",
+            "email": "marcio.nobrega@sapo.pt"
         }
     ],
     "autoload": {
