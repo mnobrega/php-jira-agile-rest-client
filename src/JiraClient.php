@@ -12,6 +12,8 @@ use Monolog\Logger as Logger;
  */
 class JiraClient
 {
+    const JIRA_DATE_FORMAT = "Y-m-d\TH:i:s";
+
     /**
      * Json Mapper.
      *

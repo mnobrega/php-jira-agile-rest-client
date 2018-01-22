@@ -10,7 +10,7 @@ namespace JiraAgileRestApi\IssueRank;
 
 class IssueRank implements \JsonSerializable
 {
-    /** @var array */
+    /** @var string[] */
     public $issues;
     /** @var string */
     public $rankBeforeIssue;
