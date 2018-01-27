@@ -9,6 +9,7 @@
 namespace JiraAgileRestApi;
 use JiraAgileRestApi\BacklogIssue\BacklogIssue;
 use JiraAgileRestApi\BacklogIssue\BacklogIssueService;
+use JiraAgileRestApi\Board\BoardService;
 use JiraAgileRestApi\Configuration\DotEnvConfiguration;
 use JiraAgileRestApi\Issue\Issue;
 use JiraAgileRestApi\Issue\IssueService;
@@ -18,41 +19,51 @@ use JiraAgileRestApi\Sprint\Sprint;
 use JiraAgileRestApi\Sprint\SprintIssue;
 use JiraAgileRestApi\Sprint\SprintService;
 
-require_once('../vendor/autoload.php');
+require_once(__DIR__.'/../vendor/autoload.php');
 
-$dotEnvConfig = new DotEnvConfiguration("../");
+$dotEnvConfig = new DotEnvConfiguration(__DIR__."/../");
 $issueRankService = new IssueRankService($dotEnvConfig);
 $issueService = new IssueService($dotEnvConfig);
 $backlogIssueService = new BacklogIssueService($dotEnvConfig);
 $sprintService = new SprintService($dotEnvConfig);
+$boardService = new BoardService($dotEnvConfig);
+
+$testIssueKey = 'VVESTIOS-152';
+$testBeforeIssueKey = 'VVESTIOS-149';
+$testBoardId=5;
 
 try {
+
+    // TEST get board sprints
+    $boardSprints = $boardService->getSprints($testBoardId);
+    dump($boardSprints);
+
     // TEST change Rank
     $issueRank = new IssueRank();
     $issueRank->issues = [
-        'VVESTIOS-142'
+        $testIssueKey
     ];
-    $issueRank->rankBeforeIssue = 'VVESTIOS-138';
+    $issueRank->rankBeforeIssue = $testBeforeIssueKey;
     $issueRankService->update($issueRank);
 
     // TEST get Issue
     $params = ["fields"=>"sprint"];
-    $issue = $issueService->get("VVESTIOS-142",$params);
+    $issue = $issueService->get($testIssueKey,$params);
     /** @var $issue Issue */
     echo "\nTEST get Issue\n";
-    print_r($issue);
+    dump($issue);
 
     // TEST move Issues to Backlog
     $backlogIssue = new BacklogIssue();
     $backlogIssue->issues = [
-        "VVESTIOS-142"
+        $testIssueKey
     ];
     $backlogIssueService->create($backlogIssue);
 
     // TEST get Sprint
     $sprint = $sprintService->get($issue->fields->sprint->id);
     echo "\nTEST get Sprint\n";
-    print_r($sprint);
+    dump($sprint);
 
     // TEST update Sprint
     $now = new \DateTime();
@@ -64,7 +75,7 @@ try {
     $sprintService->update($sprint->id,$sprint);
     $sprint = $sprintService->get($issue->fields->sprint->id);
     echo "\nTEST update Sprint\n";
-    print_r($sprint);
+    dump($sprint);
 
     // TEST create Sprint
     $now = new \DateTime();
@@ -76,7 +87,7 @@ try {
     $newSprint->originBoardId = $issue->fields->sprint->originBoardId;
     $newSprint = $sprintService->create($newSprint);
     echo "\nTEST created Sprint\n";
-    print_r($newSprint);
+    dump($newSprint);
 
     // TEST move Issue to Sprint
     $sprintIssue = new SprintIssue();
@@ -87,9 +98,9 @@ try {
     $sprintService->addIssues($issue->fields->sprint->id,$sprintIssue);
     $issueRank = new IssueRank();
     $issueRank->issues = [
-        'VVESTIOS-138'
+        $testBeforeIssueKey
     ];
-    $issueRank->rankBeforeIssue = 'VVESTIOS-142';
+    $issueRank->rankBeforeIssue = $testIssueKey;
     $issueRankService->update($issueRank);
     $sprintService->delete($newSprint->id);
 
