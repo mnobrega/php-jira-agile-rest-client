@@ -12,6 +12,7 @@ use Monolog\Logger as Logger;
  */
 class JiraClient
 {
+    static public $compatibleJiraVersions = ['7.3.6'];
     const JIRA_DATE_FORMAT = "Y-m-d\TH:i:s";
 
     /**
@@ -57,11 +58,11 @@ class JiraClient
     protected $configuration;
 
     /**
-     * Constructor.
-     *
-     * @param ConfigurationInterface $configuration
-     * @param Logger                 $logger
-     * @param string                 $path
+     * JiraClient constructor.
+     * @param ConfigurationInterface|null $configuration
+     * @param Logger|null $logger
+     * @param string $path
+     * @throws JiraException
      */
     public function __construct(ConfigurationInterface $configuration = null, Logger $logger = null, $path = './')
     {
@@ -71,6 +72,10 @@ class JiraClient
                 $path = '../';
             }
             $configuration = new DotEnvConfiguration($path);
+        }
+
+        if (!in_array($configuration->getJiraVersion(),self::$compatibleJiraVersions)) {
+            throw new JiraException("Your JIRA is not compatible with this library.");
         }
 
         $this->configuration = $configuration;

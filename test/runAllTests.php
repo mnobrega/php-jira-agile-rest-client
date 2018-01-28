@@ -34,6 +34,10 @@ $testBoardId=5;
 
 try {
 
+    // TEST get All Boards
+    $boards = $boardService->getAllBoards();
+    dd($boards);
+
     // TEST get board sprints
     $boardSprints = $boardService->getSprints($testBoardId);
     dump($boardSprints);

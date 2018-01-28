@@ -25,6 +25,8 @@ class Sprint implements \JsonSerializable
     public $endDate;
     /** @var integer */
     public $originBoardId;
+    /** @var string */
+    public $completeDate;
 
     public function jsonSerialize()
     {

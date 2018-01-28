@@ -29,6 +29,13 @@ abstract class AbstractConfiguration implements ConfigurationInterface
     protected $jiraPassword;
 
     /**
+     * Jira Version.
+     *
+     * @var string
+     */
+    protected $jiraVersion;
+
+    /**
      * Path to log file.
      *
      * @var string
@@ -85,6 +92,11 @@ abstract class AbstractConfiguration implements ConfigurationInterface
     public function getJiraPassword()
     {
         return $this->jiraPassword;
+    }
+
+    public function getJiraVersion()
+    {
+        return $this->jiraVersion;
     }
 
     /**

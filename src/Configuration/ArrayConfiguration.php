@@ -7,14 +7,19 @@
  */
 
 namespace JiraAgileRestApi\Configuration;
+use JiraAgileRestApi\JiraException;
 
 /**
  * Class ArrayConfiguration.
  */
 class ArrayConfiguration extends AbstractConfiguration
 {
+
+
     /**
+     * ArrayConfiguration constructor.
      * @param array $configuration
+     * @throws JiraException
      */
     public function __construct(array $configuration)
     {

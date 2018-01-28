@@ -29,6 +29,7 @@ class DotEnvConfiguration extends AbstractConfiguration
 
         $this->jiraHost = $this->env('JIRA_HOST');
         $this->jiraUser = $this->env('JIRA_USER');
+        $this->jiraVersion = $this->env('JIRA_VERSION');
         $this->jiraPassword = $this->env('JIRA_PASS');
         $this->jiraLogFile = $this->env('JIRA_LOG_FILE', 'jira-rest-client.log');
         $this->jiraLogLevel = $this->env('JIRA_LOG_LEVEL', 'WARNING');
