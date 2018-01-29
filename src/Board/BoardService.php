@@ -17,7 +17,7 @@ class BoardService extends JiraClient
 
     /**
      * @param array $paramArray
-     * @return object
+     * @return BoardSearchResult|object
      * @throws \JiraAgileRestApi\JiraException
      * @throws \JsonMapper_Exception
      */
@@ -33,17 +33,16 @@ class BoardService extends JiraClient
     /**
      * @param $boardId
      * @param array $paramArray
-     * @return object
+     * @return SprintSearchResult|object
      * @throws \JiraAgileRestApi\JiraException
      * @throws \JsonMapper_Exception
      */
     public function getSprints($boardId, $paramArray = [])
     {
-        $sprintSearchResult = new SprintSearchResult();
         $ret = $this->exec($this->uri.'/'.$boardId.'/sprint'.$this->toHttpQueryParameter($paramArray), null);
         $this->log->addInfo("Result=\n".$ret);
         return $this->json_mapper->map(
-            json_decode($ret), $sprintSearchResult
+            json_decode($ret), new SprintSearchResult()
         );
     }
 }
