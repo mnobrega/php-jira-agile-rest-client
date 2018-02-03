@@ -8,6 +8,8 @@
 
 namespace JiraAgileRestApi\IssueRank;
 
+use JiraAgileRestApi\Issue\Issue;
+
 class IssueRank implements \JsonSerializable
 {
     /** @var string[] */
@@ -16,6 +18,24 @@ class IssueRank implements \JsonSerializable
     public $rankBeforeIssue;
     /** @var string */
     public $rankCustomFieldId;
+
+    public function addIssue($issueKey)
+    {
+        $this->issues[] = $issueKey;
+        return $this;
+    }
+
+    public function setRankBeforeIssue($issueKey)
+    {
+        $this->rankBeforeIssue = $issueKey;
+        return $this;
+    }
+
+    public function setRankCustomFieldId($rankCustomFieldId)
+    {
+        $this->rankCustomFieldId = $rankCustomFieldId;
+        return $this;
+    }
 
     public function jsonSerialize()
     {

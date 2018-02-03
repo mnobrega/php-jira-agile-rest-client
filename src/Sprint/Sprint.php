@@ -32,6 +32,36 @@ class Sprint implements \JsonSerializable
     /** @var string */
     public $completeDate;
 
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function setState($state)
+    {
+        $this->state = $state;
+        return $this;
+    }
+
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
+        return $this;
+    }
+
+    public function setEndDate($endDate)
+    {
+        $this->endDate = $endDate;
+        return $this;
+    }
+
+    public function setCompletedDate($completeDate)
+    {
+        $this->completeDate = $completeDate;
+        return $this;
+    }
+
     public function jsonSerialize()
     {
         return array_filter(get_object_vars($this));
