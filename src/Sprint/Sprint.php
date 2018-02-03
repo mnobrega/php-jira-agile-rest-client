@@ -62,6 +62,12 @@ class Sprint implements \JsonSerializable
         return $this;
     }
 
+    public function setOriginBoardId($originBoardId)
+    {
+        $this->originBoardId = $originBoardId;
+        return $this;
+    }
+
     public function jsonSerialize()
     {
         return array_filter(get_object_vars($this));

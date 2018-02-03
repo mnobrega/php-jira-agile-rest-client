@@ -38,6 +38,8 @@ class SprintService extends JiraClient
      */
     public function create(Sprint $sprint)
     {
+        /** WHY: not allowed parameters in a POST */
+        $sprint->setState(null)->setCompletedDate(null);
         $data = json_encode($sprint);
         $this->log->addInfo("Create sprint=\n".$data);
         $ret = $this->exec($this->uri,$data,'POST');
@@ -55,6 +57,8 @@ class SprintService extends JiraClient
      */
     public function update($sprintId, Sprint $sprint)
     {
+        /** WHY: cant move a sprint from board A to board B */
+        $sprint->setOriginBoardId(null);
         $data = json_encode($sprint);
         $this->log->addInfo("Update Sprint=\n".$data);
         $ret = $this->exec($this->uri."/$sprintId", $data, 'PUT');
