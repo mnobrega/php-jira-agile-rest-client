@@ -54,6 +54,7 @@ class SprintService extends JiraClient
      * @param Sprint $sprint
      * @return string
      * @throws \JiraAgileRestApi\JiraException
+     * @throws \JsonMapper_Exception
      */
     public function update($sprintId, Sprint $sprint)
     {
@@ -62,6 +63,9 @@ class SprintService extends JiraClient
         $data = json_encode($sprint);
         $this->log->addInfo("Update Sprint=\n".$data);
         $ret = $this->exec($this->uri."/$sprintId", $data, 'PUT');
+        $sprint = $this->json_mapper->map(
+            json_decode($ret), new Sprint()
+        );
         return $ret;
     }
 
