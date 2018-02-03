@@ -66,7 +66,7 @@ class SprintService extends JiraClient
         $sprint = $this->json_mapper->map(
             json_decode($ret), new Sprint()
         );
-        return $ret;
+        return $sprint;
     }
 
     /**
