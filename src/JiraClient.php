@@ -12,7 +12,7 @@ use Monolog\Logger as Logger;
  */
 class JiraClient
 {
-    static public $compatibleJiraVersions = ['7.3.6'];
+    static public $compatibleJiraVersions = ['7.3.6','7.6.1'];
     const JIRA_DATE_FORMAT = "Y-m-d\TH:i:s";
 
     /**
