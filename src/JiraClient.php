@@ -472,9 +472,9 @@ class JiraClient
 
             // some param field(Ex: expand) type is array.
             if (is_array($value)) {
-                $v = implode(',', $value);
+                $v = implode(',', urlencode($value));
             } else {
-                $v = $value;
+                $v = urlencode($value);
             }
 
             $queryParam .= $key.'='.$v.'&';
